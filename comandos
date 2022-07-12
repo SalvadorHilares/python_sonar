@@ -2,6 +2,7 @@ Primero es necesario instalar :
 - pip install pytest
 - pip install coverage
 - pip install pytest-cov
+- pip install tox
 
 Luego ejecutar en consola los comandos en la parte inferior
 
