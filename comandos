@@ -1,0 +1,17 @@
+Primero es necesario instalar : 
+- pip install pytest
+- pip install coverage
+- pip install pytest-cov
+
+Luego ejecutar en consola los comandos en la parte inferior
+
+<-------COMANDOS PARA EJECUTAR LOS TESTS ------->
+pytest --> Genera el archivo de los test para el SonarCloud
+pytest -v --> Entrega un formado más especifico de que test pasaron
+pytest -v --cov=app --> Reporte en consola
+pytest -v --cov=app --cov-report=html --> Reporte en html
+
+<-------COMANDOS PARA EL COVERAGE -------------->
+coverage run app.py
+coverage report
+coverage report -m
