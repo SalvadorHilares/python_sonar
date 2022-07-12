@@ -54,3 +54,8 @@ class Tests(unittest.TestCase):
         self.assertEqual(self.centro_vacunacion.porc_personas(15),-1)
         self.assertEqual(round(self.centro_vacunacion.porc_personas(20),2),0.08)
         self.assertEqual(round(self.centro_vacunacion.porc_personas(82),2),0.77)
+        self.assertEqual(round(self.centro_vacunacion.porc_personas(75),2),0.24)
+        self.assertEqual(round(self.centro_vacunacion.porc_personas(65),2),0.23)
+        self.assertEqual(round(self.centro_vacunacion.porc_personas(54),2),0.15)
+        self.assertEqual(round(self.centro_vacunacion.porc_personas(43),2),0.12)
+        self.assertEqual(round(self.centro_vacunacion.porc_personas(33),2),0.10)
