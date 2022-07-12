@@ -77,7 +77,6 @@ class Tests(unittest.TestCase):
         self.centro_vacunacion.porc_personas(20)
         self.centro_vacunacion.porc_personas(35)
         self.centro_vacunacion.porc_personas(60)
-        (self.centro_vacunacion.total_vacunados_1/self.centro_vacunacion.total_personas)*100
         t1 = time.process_time()
         total = t1-t0
         self.assertTrue(total<3)
