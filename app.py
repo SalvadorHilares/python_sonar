@@ -4,7 +4,7 @@ class Usuario():
     def __init__(self, username):
         self.username = username
 
-class Centro_Vacunacion():
+class centroVacunacion():
     def __init__(self):
         self.total_personas = 22935533
         self.total_vacunados = 0
@@ -15,7 +15,7 @@ class Centro_Vacunacion():
 class Tests(unittest.TestCase):
 
     user = Usuario('pepito')
-    centro_vacunacion = Centro_Vacunacion()
+    centro_vacunacion = centroVacunacion()
 
     def test_login(self):
         test_password=''.join(reversed(self.user.username))
