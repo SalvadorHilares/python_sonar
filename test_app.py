@@ -19,6 +19,3 @@ class Tests(unittest.TestCase):
         self.centro_vacunacion.personas_vacunadas(1500)
         self.centro_vacunacion.personas_vacunadas(1200)
         self.assertEqual(self.centro_vacunacion.total_vacunados,3700)
-
-#if __name__ == '__main__':
-#    unittest.main()
