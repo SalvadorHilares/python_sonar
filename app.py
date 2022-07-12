@@ -1,20 +1,17 @@
 import unittest
 
-class TestStringMethods(unittest.TestCase):
+class Usuario():
+    def __init__(self, username):
+        self.username = username
 
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+class Tests(unittest.TestCase):
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
+    user = Usuario('pepito')
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_login(self):
+        test_password=''.join(reversed(self.user.username))
+        self.assertEqual(self.user.username,'pepito')
+        self.assertEqual(test_password,'otipep')
 
 if __name__ == '__main__':
     unittest.main()
