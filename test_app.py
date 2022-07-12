@@ -19,8 +19,3 @@ class Tests(unittest.TestCase):
         self.centro_vacunacion.personas_vacunadas(1500)
         self.centro_vacunacion.personas_vacunadas(1200)
         self.assertEqual(self.centro_vacunacion.total_vacunados,3700)
-
-test = Tests()
-test.test_username()
-test.test_password()
-test.test_vacunados()
