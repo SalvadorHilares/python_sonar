@@ -1,3 +1,4 @@
+import time
 import unittest
 from app import Postas, Usuario,CentroVacunacion
 
@@ -26,7 +27,7 @@ class Tests(unittest.TestCase):
         self.centro_vacunacion.personas_vacunadas_1(100000)
         self.centro_vacunacion.personas_vacunadas_1(150000)
         self.centro_vacunacion.personas_vacunadas_1(120000)
-        self.assertEqual(self.centro_vacunacion.total_vacunados_1,370000, "Total vacunados 2")
+        self.assertEqual(self.centro_vacunacion.total_vacunados_1,370000, "Total vacunados 1")
     
     def test_vacunados_porcentaje_1(self):
         porcentaje_vacunados = (self.centro_vacunacion.total_vacunados_1/self.centro_vacunacion.total_personas)*100
@@ -59,3 +60,24 @@ class Tests(unittest.TestCase):
         self.assertEqual(round(self.centro_vacunacion.porc_personas(54),2),0.15)
         self.assertEqual(round(self.centro_vacunacion.porc_personas(43),2),0.12)
         self.assertEqual(round(self.centro_vacunacion.porc_personas(33),2),0.10)
+    
+    def test_respuesta_posta(self):
+        self.assertTrue(self.postas.total_centro_vacunacion <= 50)
+    
+    def test_y_tiempo_respuesta_consolidado(self):
+        t0 = time.process_time()
+        self.centro_vacunacion.porc_personas(20)
+        t1 = time.process_time()
+        total = t1-t0
+        self.assertTrue(total<2)
+    
+    def test_x_tiempo_vacunado(self):
+        t0 = time.process_time()
+        self.user.alta = True
+        self.centro_vacunacion.porc_personas(20)
+        self.centro_vacunacion.porc_personas(35)
+        self.centro_vacunacion.porc_personas(60)
+        (self.centro_vacunacion.total_vacunados_1/self.centro_vacunacion.total_personas)*100
+        t1 = time.process_time()
+        total = t1-t0
+        self.assertTrue(total<3)
