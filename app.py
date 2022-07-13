@@ -13,6 +13,7 @@ class Publisher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), nullable=False)
     contraseña = db.Column(db.String(80), nullable=False)
+    mensaje = db.Column(db.String(80), nullable=False)
 
 class Subscriber(db.Model):
     __tablename__ = 'subscriber'
@@ -31,15 +32,15 @@ def authenticate_user():
     try:
         username = request.get_json()['username']
         password = request.get_json()['password']
-        type = request.get_json()['type']
-        if type == "Publisher":
+        tipo = request.get_json()['type']
+        if tipo == "Publisher":
             db.session.query(Publisher).filter(Publisher.nombre == username).filter(
                 Publisher.contraseña == password).one()
         else:
             db.session.query(Subscriber).filter(Subscriber.nombre == username).filter(
                 Publisher.contraseña == password).one()
-        response['type'] = type
-    except:
+        response['type'] = tipo
+    except BaseException:
         error = True
         db.session.rollback()
         print(sys.exc_info())
@@ -49,6 +50,8 @@ def authenticate_user():
         response['error_message'] = "Usuario o contraseña incorrecto"
     response['error'] = error
     return jsonify(response)
+
+
 
 
 @app.route('/')

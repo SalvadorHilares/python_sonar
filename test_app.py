@@ -2,5 +2,5 @@ import unittest
 
 class Tests(unittest.TestCase):
 
-    def test_login(self):
+    def mymethod1():
         pass
