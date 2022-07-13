@@ -13,7 +13,6 @@ class Publisher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), nullable=False)
     contraseña = db.Column(db.String(80), nullable=False)
-    mensaje = db.Column(db.String(80), nullable=False)
 
 class Subscriber(db.Model):
     __tablename__ = 'subscriber'
@@ -50,9 +49,6 @@ def authenticate_user():
         response['error_message'] = "Usuario o contraseña incorrecto"
     response['error'] = error
     return jsonify(response)
-
-
-
 
 @app.route('/')
 def index():
