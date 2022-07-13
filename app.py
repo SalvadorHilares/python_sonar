@@ -31,8 +31,8 @@ def authenticate_user():
     try:
         username = request.get_json()['username']
         password = request.get_json()['password']
-        tipo = request.get_json()['type']
-        if tipo == "Publisher":
+        tipo = request.get_json()['control']
+        if tipo == "publisher":
             db.session.query(Publisher).filter(Publisher.nombre == username).filter(
                 Publisher.contraseña == password).one()
         else:

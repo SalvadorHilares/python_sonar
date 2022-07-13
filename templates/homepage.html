@@ -8,14 +8,14 @@
 </head>
 <body>
     <form id="Mensajeria">
-    {% if data == "Publisher" %}
+    {% if data == "publisher" %}
         <input type="text" id="mensaje" class="mensaje" placeholder="Ingrese su mensaje">
         <input class="botones" type="submit" id="submit_1" value="Ingresar" />
         <ul id="publicar_mensajes">
         </ul>
     {% endif %}
     
-    {% if data == "Subscriber" %}
+    {% if data == "subscriber" %}
         <ul id="ver_mensajes">
             <h1>Mensajes</h1>
             <h3>Estos mensajes son nuevos</h3>

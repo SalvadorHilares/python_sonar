@@ -5,7 +5,7 @@ document.getElementById("login").onsubmit = function(e){
         body: JSON.stringify({
             'username': document.getElementById('username').value,
             'password': document.getElementById('password').value,
-            'type' : document.getElementById('control').value
+            'control' : document.getElementById('control').value
         }),
         headers : {
             'Content-Type' : 'application/json'
