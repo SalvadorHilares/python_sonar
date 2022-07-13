@@ -40,7 +40,7 @@ def authenticate_user():
             db.session.query(Subscriber).filter(Subscriber.nombre == username).filter(
                 Publisher.contraseña == password).one()
         response['type'] = tipo
-    except BaseException:
+    except FileNotFoundError:
         error = True
         db.session.rollback()
         print(sys.exc_info())
