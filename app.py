@@ -1,3 +1,4 @@
+from email.message import Message
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import sys
@@ -11,34 +12,27 @@ db = SQLAlchemy(app)
 class Publisher(db.Model):
     __tablename__ = 'publisher'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(80), nullable=False)
-    contraseña = db.Column(db.String(80), nullable=False)
+    mensaje = db.Column(db.String(100), nullable = False)
+    topic = db.Column(db.String(100), nullable = False)
 
 class Subscriber(db.Model):
-    __tablename__ = 'subscriber'
+    __tablename__ = "subscriber"
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(80), nullable=False)
-    contraseña = db.Column(db.String(80), nullable=False)
 
 db.create_all()
 
-# LOGEAR USUARIOS
-
-@app.route('/authenticate/login', methods=['POST'])
-def authenticate_user():
+@app.route("/agregar/message", methods = ['POST'])
+def message_post():
     error = False
     response = {}
     try:
-        username = request.get_json()['username']
-        password = request.get_json()['password']
-        tipo = request.get_json()['control']
-        if tipo == "publisher":
-            db.session.query(Publisher).filter(Publisher.nombre == username).filter(
-                Publisher.contraseña == password).one()
-        else:
-            db.session.query(Subscriber).filter(Subscriber.nombre == username).filter(
-                Publisher.contraseña == password).one()
-        response['type'] = tipo
+        mess = request.get_json()["message"]
+        topic = request.get_json()["control"]
+        publisher = Publisher(mensaje=mess, topic=topic)
+        db.session.add(publisher)
+        db.session.commit()
+        response["mensaje"] = mess
+        response["topic"] = topic
     except FileNotFoundError:
         error = True
         db.session.rollback()
@@ -46,17 +40,14 @@ def authenticate_user():
     finally:
         db.session.close()
     if error:
-        response['error_message'] = "Usuario o contraseña incorrecto"
+        response['error_message'] = "Mensaje no ingresado"
     response['error'] = error
     return jsonify(response)
 
+
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.route('/homepage/<type>')
-def homepage(type):
-    return render_template('homepage.html',data=type)
+    return render_template('index.html', data=Publisher.query.all())
 
 if __name__ == '__main__':
     app.run(port=5003, debug=True)

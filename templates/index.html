@@ -7,17 +7,20 @@
     <title>Login</title>
 </head>
 <body>
-    <form id="login">
-        <h5>LOGIN</h5>
-        <div id="error" class="hidden" style="color: black;"></div>
-        <input class="controles" type="text" id="username" name="username" placeholder="Usuario">
-        <input class="controles" type="password" id="password" name="password" placeholder="Contraseña">
-        <select class="controles" id="control" name="control">
-            <option value="publisher">Publisher</option>
-            <option value="subscriber">Subscriber</option>
+    <div id="error" class="hidden" style="color: black;"></div>
+    <form id="Publicar">
+        <input type="text" id="mensaje" name="mensaje" placeholder="mensaje">
+        <select  id="control" name="control">
+            <option value="manga">Manga</option>
+            <option value="anime">Anime</option>
         </select>
-        <input class="botones" type="submit" id="submit" value="Ingresar" />
+        <input class="botones" type="submit" id="submit" value="PUBLICAR" />
     </form>
-    <script src="/static/js/login.js"></script>
+    <ul id="publicar_mensajes">
+        {% for d in data %}
+            <li>{{d.mensaje}} {{d.topic}}</li>
+        {% endfor %}
+    </ul>
+    <script src="/static/js/homepage.js"></script>
 </body>
 </html>
