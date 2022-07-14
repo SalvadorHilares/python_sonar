@@ -44,7 +44,7 @@ def message_post():
     response['error'] = error
     return jsonify(response)
 
-@app.route("/ver/message", methods = ['POST'])
+@app.route("/ver/message", methods = ['GET'])
 def message_get():
     error = False
     response = {}
