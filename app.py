@@ -44,6 +44,24 @@ def message_post():
     response['error'] = error
     return jsonify(response)
 
+@app.route("/ver/message", methods = ['POST'])
+def message_get():
+    error = False
+    response = {}
+    try:
+        topic = request.get_json()["control"]
+        messages = db.session.query(Publisher).filter(Publisher.topic == topic).all()
+        response["messages"] = messages
+    except FileNotFoundError:
+        error = True
+        db.session.rollback()
+        print(sys.exc_info())
+    finally:
+        db.session.close()
+    if error:
+        response['error_message'] = "Mensaje no ingresado"
+    response['error'] = error
+    return jsonify(response)
 
 @app.route('/')
 def index():
