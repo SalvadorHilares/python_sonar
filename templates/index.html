@@ -7,6 +7,7 @@
     <title>Login</title>
 </head>
 <body>
+    <h!>PUBLISHER</h1>
     <div id="error" class="hidden" style="color: black;"></div>
     <form id="Publicar">
         <input type="text" id="mensaje" name="mensaje" placeholder="mensaje">
@@ -16,6 +17,7 @@
         </select>
         <input class="botones" type="submit" id="submit" value="PUBLICAR" />
     </form>
+    <h1>Subscriber</h1>
     <ul id="publicar_mensajes">
         {% for d in data %}
             <li>{{d.mensaje}} {{d.topic}}</li>
